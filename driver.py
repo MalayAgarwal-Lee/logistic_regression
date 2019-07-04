@@ -9,7 +9,6 @@ def main():
 
     theta = gradient_descent(X, y, theta, m, alpha, num_iters)
     print(f"Model accuracy: {accuracy(X, y, theta)}%")
-    plot_decision_boundary(X, y, theta)
 
 
 if __name__ == '__main__':
