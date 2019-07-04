@@ -27,9 +27,36 @@ def sigmoid(Z):
 
 
 def cost_function(X, y, theta, m):
+    '''
+    Calculates the value of the cost function
+    For a given X, y, theta and m
+
+    If sigmoid(X * theta) are the predicted values for given theta,
+    Then the formula for the cost function is as follows:
+        J = (-1 / m) * sum(y * log(predictions) + (1 - y) * log(1 - predictions))
+        Where the multiplication is done element-wise
+
+    Arguments:
+        X: ndarray, (m, n) matrix consisting of the features
+        y: ndarray, (m, 1) matrix consisting of y-values
+        theta: ndarray, (n, 1) matrix with parameter values
+        m: int, number of training examples in dataset
+
+    Returns:
+        J: ndarray, (1, 1) matrix containing the cost
+    '''
+
+    # Getting predicted values
     predictions = sigmoid(X @ theta)
+
+    # (y * log(predictions))
+    # The '*' operator does element-wise multiplication
     left_opr = y * np.log(predictions)
+
+    # ((1 - y) * log(1 - predictions))
     right_opr = (1 - y) * np.log(1 - predictions)
+
+    # Returning the computed cost
     return (-1 / m) * sum(left_opr + right_opr)
 
 
