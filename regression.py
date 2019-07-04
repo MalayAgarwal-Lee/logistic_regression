@@ -3,6 +3,25 @@ import matplotlib.pyplot as plt
 
 
 def sigmoid(Z):
+    '''
+    Computes the sigmoid function given as:
+        sigmoid(Z) = 1/(1 + e^(-Z))
+
+    In a simple hypothesis such as that for linear regression
+    The values can be greater than 1
+    But, in logistic regression, the values need to be 0 or 1
+    The sigmoid function always yields values between 0 and 1
+    Therefore, the function is applied on the simple hypothesis
+    This ensures that the hypothesis' range is between 0 and 1
+
+    Arguments:
+        Z: scalar or array-like
+           Value(s) for which sigmoid needs to be computed
+
+    Returns:
+        sigmoid(Z): scalar or array-like
+                    Value(s) of sigmoid function for Z
+    '''
     exponent = 1 + np.exp(np.negative(Z))
     return np.reciprocal(exponent)
 
