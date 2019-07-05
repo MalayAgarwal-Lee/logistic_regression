@@ -76,14 +76,40 @@ def plot_cost(costs):
 
 
 def gradient_descent(X, y, theta, m, alpha, num_iters):
+    '''
+    Runs gradient descent num_iters times
+    To get the optimum values of the parameters
+    The algorithm can be looked at here:
+    https://en.wikipedia.org/wiki/Gradient_descent
+
+    It can be vectorized as follows:
+        theta = theta - (alpha / m) * ((sigmoid(X * theta) - y)' * X)'
+
+    Arguments:
+        X: ndarray, (m, n) matrix consisting of the features
+        y: ndarray, (m, 1) matrix consisting of the y-values
+        theta: ndarray, (n, 1) matrix with initial value of params
+        m: int, number of training examples
+        alpha: float, the learning rate
+        num_iters: int, number of times the algorithm is to be run
+
+    Returns:
+        theta: ndarray, (n, 1) matrix with optimum param values
+    '''
+
+    # Array to store cost value at each iteration
+    # Will be used to check convergence of algorithm
     j_vals = np.zeros((num_iters, 1))
 
     for i in range(num_iters):
+        # (sigmoid(X * theta) - y)'
         difference = np.transpose(sigmoid(X @ theta) - y)
+        # ((sigmoid(X * theta) - y)' * X)'
         delta = np.transpose(difference @ X)
         theta = theta - (alpha / m) * delta
         j_vals[i][0] = cost_function(X, y, theta, m)
 
+    # Plotting the costs
     plot_cost(j_vals)
     return theta
 
