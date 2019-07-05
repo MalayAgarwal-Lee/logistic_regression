@@ -114,7 +114,7 @@ def gradient_descent(X, y, theta, m, alpha, num_iters):
     return theta
 
 
-def predict(X, theta):
+def predict(X, theta, threshold=0.5):
     '''
     Predicts the class for given values of features
     And optimum param values
@@ -134,6 +134,7 @@ def predict(X, theta):
         X: ndarray, (x, n) matrix with I/P values for prediction
            Where x is the number of I/P's
         theta: ndarray, (n, 1) matrix with optimum param values
+        threshold: float, the threshold probability for prediction
 
     Returns:
         predictions: ndarray, (x, 1) matrix with predicted values
@@ -141,7 +142,7 @@ def predict(X, theta):
     '''
     predictions = np.zeros((X.shape[0], 1))
     probs = sigmoid(X @ theta)
-    predictions[probs >= 0.5] = 1
+    predictions[probs >= threshold] = 1
     return predictions
 
 
