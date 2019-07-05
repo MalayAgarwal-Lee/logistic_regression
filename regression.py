@@ -156,6 +156,28 @@ def predict(X, theta, threshold=0.5):
 
 
 def accuracy(X, y, theta):
+    '''
+    Calculates the accuracy of the model on the training set
+    For given param values
+
+    It gets the total number of correct predictions
+    And then averages them on the number of inputs
+    Multiplying by 100% to get a percentage
+
+    Arguments:
+        X: ndarray, (m, n) matrix consisting of the features
+        y: ndarray, (m, 1) matrix consisting of the y-values
+        theta: ndarray, (n, 1) matrix consisting of the param values
+
+    Returns:
+        accuracy: float, a percentage representing the accuracy of the model
+    '''
+    # Getting the predictions using predict
     predictions = predict(X, theta)
+
+    # Getting a boolean mask of the correct predictions
     correct = predictions == y
+
+    # Getting the number of correct predictions
+    # Averaging it on input length and converting it to a %age
     return (np.sum(correct) / len(X)) * 100
