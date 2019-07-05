@@ -140,9 +140,18 @@ def predict(X, theta, threshold=0.5):
         predictions: ndarray, (x, 1) matrix with predicted values
         Has 1's or 0's only, corresponding to +ve or -ve class
     '''
+
+    # Initialize appropriately sized zero matrix
+    # To store predictions
     predictions = np.zeros((X.shape[0], 1))
+
+    # Getting probability values for given X
     probs = sigmoid(X @ theta)
+
+    # Using a boolean mask to assign 1 to all indices
+    # Where the threshold condition is true
     predictions[probs >= threshold] = 1
+
     return predictions
 
 
