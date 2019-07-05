@@ -115,6 +115,30 @@ def gradient_descent(X, y, theta, m, alpha, num_iters):
 
 
 def predict(X, theta):
+    '''
+    Predicts the class for given values of features
+    And optimum param values
+    It can be used to make as many predictions in one go
+    As required by passing an appropriately sized matrix as X
+
+    For example, [1, 2, 3] corresponds to predicting for 1 I/P
+    While [[1, 2, 3], [1, 5, 6], [1, 8, 9]] corresponds to predicting
+    for 3 I/P's
+    Note that first column is always 1 due to added feature x_0
+
+    A default threshold probability of 0.5 is used
+    If sigmoid(X * theta) >= 0.5 for some x in X, we predict 1
+    Otherwise, we predict 0
+
+    Arguments:
+        X: ndarray, (x, n) matrix with I/P values for prediction
+           Where x is the number of I/P's
+        theta: ndarray, (n, 1) matrix with optimum param values
+
+    Returns:
+        predictions: ndarray, (x, 1) matrix with predicted values
+        Has 1's or 0's only, corresponding to +ve or -ve class
+    '''
     predictions = np.zeros((X.shape[0], 1))
     probs = sigmoid(X @ theta)
     predictions[probs >= 0.5] = 1
